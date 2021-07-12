@@ -1,14 +1,49 @@
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
+import React, { useState } from "react";
+export default function App() {
+  const [state, setState] = useState({
+    email: "",
+    password: ""
+  });
+
+  const handleInputChange = (event) => {
+    setState((prevProps) => ({
+      ...prevProps,
+      [event.target.name]: event.target.value
+    }));
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log(state);
+  };
+
   return (
     <div className="App">
-      <h2>Is It Coffee Yet?</h2>
-      <p>This is JSX - JavaScript NOT html</p>
-      <p>lower-case for html tags Initial Cap for React Components</p>
+      <form onSubmit={handleSubmit}>
+        <div className="form-control">
+          <label>Email</label>
+          <input
+            type="text"
+            name="email"
+            value={state.email}
+            onChange={handleInputChange}
+          />
+        </div>
+        <div className="form-control">
+          <label>Password</label>
+          <input
+            type="password"
+            name="password"
+            value={state.password}
+            onChange={handleInputChange}
+          />
+        </div>
+        <div className="form-control">
+          <label></label>
+          <button type="submit">Login</button>
+        </div>
+      </form>
     </div>
   );
 }
-
-export default App;
