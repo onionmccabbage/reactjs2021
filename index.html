@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The most basic RactJS possible</title>
 </head>
+
 <body>
-    
+
     <!-- https://tinyurl.com/v538v3rh -->
-    
+
     <div id='my_container'></div>
 
 
@@ -19,23 +21,29 @@
     <script src="https://unpkg.com/react@16/umd/react.production.min.js" crossorigin></script>
     <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js" crossorigin></script>
     <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
-    <script>
-        const e= React.createElement
+    <!-- DO NOT DO THIS IN P{RODUCTION!!!!!!! -->
+    <script type="text/babel">
+        const e = React.createElement
 
         class LikeButton extends React.Component {
             constructor(props) { // props are properties
                 super(props) // always a good idea to call the parent constructor
-                this.state = { liked:false } // state is the reactive data model
+                this.state = { liked: false } // state is the reactive data model
             }
 
-            render(){ // we are obliged to provide a render method to component
+            render() { // we are obliged to provide a render method to component
                 if (this.state.liked) {
-                    return 'you liked this'
+                    // do stuff using JSX (a JavaScript thing)
+                    return (
+                        <section>
+                    'you liked this'
+                        < button onClick = { ()=> { this.setState({ liked: true }) }> Like</button >
+                        </section>
+                        )
                 } else {
-                    return 'random statement'
-                }
-            }
+            return 'random statement'
         }
+
 
         const whereToGo = document.querySelector('#my_container')
         ReactDOM.render(e(LikeButton), whereToGo)
@@ -44,4 +52,5 @@
 
 
 </body>
+
 </html>
