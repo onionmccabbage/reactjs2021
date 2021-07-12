@@ -9,16 +9,20 @@ function App() {
   const [urlEverything, setUrlEverything] = useState('https://via.placeholder.com/320x64/EEE/111/?text=width height bg-color text-color')
   const sizes = [32, 64, 128, 256, 512]
 
-  const [imgInfo, setImgInfo] = useState({w:64, h:64, bg:0xfff, fg:0x000})
+  const [imgWidth, setImgWidth] = useState(64)
+  const [imgHeight, setImgHeight] = useState(64)
 
   const handleWidthChange = (e)=>{
-    setImgInfo = {w:e.target.value, h:64, bg:0xfff, fg:0x000}
+    setImgWidth(e.target.value)
+    setImgHeight(e.target.value)
+    let newUrl = 'https://via.placeholder.com/' +imgWidth+'x' + imgHeight+'/EEE/111/?text=width height bg-color text-color'
+    setUrlEverything(newUrl)
   }
 
   return (
     <div className="App">
       {/* top-level UI */}
-      <input type='range' value={imgInfo.w} onChange={handleWidthChange} />
+      <input type='range' value={imgWidth} onChange={handleWidthChange} />
       <hr/>
       {/* component instances */}
       <Image whichUrl={urlData150} />
