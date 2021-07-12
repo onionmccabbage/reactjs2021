@@ -1,26 +1,34 @@
 
 import React, { useState } from "react";
 export default function App() {
+  // what about the names 'state' and 'setState'.....
   const [state, setState] = useState({
     email: "",
     password: ""
   });
 
+  // here's another stateful member
+  const [age, setAge] = useState(42)
+//   const [fruit, setFruit] = useState('Durian')
+//   cosnt [usr, setUsr] = useState( {f:'Ada', l:'Lovelace'} )
+
   const handleInputChange = (event) => {
     setState((prevProps) => ({
-      ...prevProps,
+      // what's this three dots about?
+      ...prevProps, // 'unpacks' a collection to it's members
       [event.target.name]: event.target.value
     }));
+    // console.log(event.target)
   };
 
   const handleSubmit = (event) => {
-    event.preventDefault();
+    // event.preventDefault();
     console.log(state);
   };
 
   return (
     <div className="App">
-      <form onSubmit={handleSubmit}>
+          <input id='frmAge' name='age' value={age} onChange ={ (e)=>{setAge(e.target.value)}} />
         <div className="form-control">
           <label>Email</label>
           <input
@@ -41,9 +49,8 @@ export default function App() {
         </div>
         <div className="form-control">
           <label></label>
-          <button type="submit">Login</button>
+          <button onClick={handleSubmit} type="submit">Login</button>
         </div>
-      </form>
     </div>
   );
 }
